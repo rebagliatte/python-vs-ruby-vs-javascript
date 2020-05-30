@@ -57,7 +57,7 @@ s[/[aeiou]/]      #=> "a"
 
 ### Reverse
 
-In Python, we pass in a
+In Python
 
 ```python
 s[::-1] # From the start to the end in steps of 1, counting backwards => "kjihgfedcba"
