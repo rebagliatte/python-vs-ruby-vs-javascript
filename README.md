@@ -342,6 +342,29 @@ my_tuple.count('a')
 
 **In Ruby and JavaScript**, there's no concept of tuples.
 
+## Named tuples
+
+**In Python**
+
+```python
+color = (red=255, green=0, blue=0)
+```
+
+**In Ruby**, there's no concept of named tuples, however, `Struct` or `OpenStruct` could be used as alternatives.
+
+```ruby
+require 'ostruct'
+
+Color = Struct.new(:red, :green, :blue)
+color = Color.new(255, 0, 0)
+```
+
+**In JavaScript**, there's no concept of named tuples, object literals are used instead.
+
+```javascript
+const color = { red: 255, green: 0, blue: 0 };
+```
+
 ## Sets
 
 **In Python**
