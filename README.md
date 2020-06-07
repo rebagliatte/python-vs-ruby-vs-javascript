@@ -341,3 +341,29 @@ my_tuple.count('a')
 ```
 
 **In Ruby and JavaScript**, there's no concept of tuples.
+
+## Sets
+
+**In Python**
+
+Sets are unordered collections of unique values.
+
+```python
+my_set = set()
+my_set.add(1) # {1}
+my_set.add(2) # {1,2}
+my_set.add(2) # {1,2} Didn't add anything! And no error.
+```
+
+**In Ruby**
+
+There's no concept of sets in Ruby.
+
+**In JavaScript**
+
+```javascript
+mySet = new Set();
+mySet.add(1);
+mySet.add(2);
+mySet.add(2);
+```
