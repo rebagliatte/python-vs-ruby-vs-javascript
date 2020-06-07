@@ -158,3 +158,130 @@ q = "quick"
 q = "quick";
 `The #{q} brown box`;
 ```
+
+## Lists (Python) / Arrays (Ruby and JavaScript)
+
+### Creating a list
+
+**In Python**
+
+```python
+my_list = ['a', 'b', 'c']
+```
+
+**In Ruby**
+
+```ruby
+my_list = ['a', 'b', 'c']
+```
+
+**In JavaScript ES6**
+
+```javascript
+let myList = ["a", "b", "c"];
+```
+
+### Adding an item
+
+**In Python**
+
+```python
+my_list.append('d')
+```
+
+**In Ruby**
+
+```ruby
+my_list.push('d')
+```
+
+**In JavaScript ES6**
+
+```js
+myList.push("d");
+```
+
+### Removing items
+
+**In Python**
+
+```python
+my_list.pop()
+my_list.pop(1) #=> "b" Removes and returns the element at index 1
+```
+
+**In Ruby**
+
+```ruby
+my_list.pop()
+my_list.pop(2) #=> ["b", "c"] Removes and returns as many items as indicated, in this case 2 items
+```
+
+**In JavaScript ES6**
+
+```js
+myList.pop();
+myList.pop(1); //=> "b" Removes and returns the element at index 1
+```
+
+### Counting the items
+
+**In Python**
+
+```python
+len(my_list)
+```
+
+**In Ruby**
+
+```ruby
+my_list.length
+```
+
+**In JavaScript**
+
+```js
+myList.length();
+```
+
+### Sorting the items
+
+**In Python**
+
+```python
+my_list.sort() # Sorts the list in place, doesn't return anything
+```
+
+**In Ruby**
+
+```ruby
+my_list.sort # Sorts
+my_list.sort! # Sorts the list in place
+```
+
+**In JavaScript**
+
+```js
+myList.sort(); // Sorts the list in place, and returns it
+```
+
+### Reversing the items
+
+**In Python**
+
+```python
+my_list.reverse() # Reverses the list in place, doesn't return anything
+```
+
+**In Ruby**
+
+```ruby
+my_list.reverse # Reverses
+my_list.reverse! # Reverses the list in place
+```
+
+**In JavaScript**
+
+```js
+myList.reverse(); // Reverses the list in place, and returns it
+```
