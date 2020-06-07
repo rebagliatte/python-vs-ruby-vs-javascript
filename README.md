@@ -285,3 +285,45 @@ my_list.reverse! # Reverses the list in place
 ```js
 myList.reverse(); // Reverses the list in place, and returns it
 ```
+
+## Dictionaries (Python) / Hashes (Ruby) / objects (JavaScript)
+
+**In Python**
+
+```python
+my_dict = {
+  'apple': 2.99,
+  'oranges': 1.99,
+  'watermelon': 0.5
+}
+my_dict['apple']
+my_dict.keys()
+my_dict.values()
+my_dict.items()
+```
+
+**In Ruby**
+
+```ruby
+my_hash = {
+  apple: 2.99,
+  oranges: 1.99,
+  watermelon: 0.5
+}
+my_hash[:apple]
+my_hash.keys
+my_hash.values
+```
+
+**In JavaScript**
+
+```js
+myObj = {
+  apples: 2.99,
+  oranges: 1.99,
+  watermelon: 0.5,
+};
+myObj.apple;
+Object.keys(myObj);
+Object.values(myObj);
+```
