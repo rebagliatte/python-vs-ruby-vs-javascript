@@ -1,6 +1,6 @@
 # Python vs Ruby vs JavaScript
 
-## Division
+## Integers
 
 **In Python**, we use true division.
 
@@ -134,4 +134,27 @@ s.downcase
 ```javascript
 s.toUpperCase();
 s.toLowerCase();
+```
+
+### String Interpolation
+
+**In Python**
+
+```python
+q = "quick"
+f"The {q} brown box"
+```
+
+**In Ruby**
+
+```ruby
+q = "quick"
+"The #{q} brown box"
+```
+
+**In JavaScript**
+
+```js
+q = "quick";
+`The #{q} brown box`;
 ```
