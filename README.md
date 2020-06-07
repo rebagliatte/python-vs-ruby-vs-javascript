@@ -327,3 +327,17 @@ myObj.apple;
 Object.keys(myObj);
 Object.values(myObj);
 ```
+
+## Tuples
+
+**In Python**
+
+Tuples, unlike lists, are _immutable_, to ensure elements don't get flipped or reassigned.
+
+```python
+my_tuple = ('a', 'a', 'b')
+my_tuple.index('a')
+my_tuple.count('a')
+```
+
+**In Ruby and JavaScript**, there's no concept of tuples.
