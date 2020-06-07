@@ -357,7 +357,15 @@ my_set.add(2) # {1,2} Didn't add anything! And no error.
 
 **In Ruby**
 
-There's no concept of sets in Ruby.
+In order to use them, the Set module needs to be required.
+
+```ruby
+require 'set'
+my_set = Set[]
+my_set.add(1)
+my_set.add(2)
+my_set.add(2)
+```
 
 **In JavaScript**
 
