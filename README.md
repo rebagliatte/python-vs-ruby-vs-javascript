@@ -426,3 +426,179 @@ false
 true;
 false;
 ```
+
+## None (Python), nil (Ruby), null (JavaScript)
+
+**In Python**
+
+```python
+None
+```
+
+**In Ruby**
+
+```ruby
+nil
+```
+
+**In JavaScript**
+
+```javascript
+null;
+```
+
+## Truthyness
+
+For quick reference:
+
+|                     | Python | Ruby | JavaScript |
+| ------------------- | ------ | ---- | ---------- |
+| `None`/`nil`/`null` | ❌     | ❌   | ❌         |
+| `""`                | ❌     | ✅   | ❌         |
+| `[]`                | ❌     | ✅   | ✅         |
+
+**In Python**
+
+```python
+not(not(None)) #=> False
+not(not("")) #=> False
+not(not([])) #=> False
+```
+
+**In Ruby**
+
+```ruby
+!!nil #=> False
+!!"" #=> True
+!![] #=> True
+```
+
+**In JavaScript**
+
+```javascript
+!!null; //=> False
+!!""; //=> False
+!![]; //=> True
+```
+
+## Equality Operators
+
+**In Python and Ruby** we use _strict_ equality.
+
+```python
+==
+```
+
+**In JavaScript** we have two distinct operators for _abstract_ and _strict_ equality. [See MDN for more details](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness#A_model_for_understanding_equality_comparisons).
+
+```javascript
+== // Abstract equality comparison (compares values after converting them to the same type)
+=== // Strict equality comparison
+```
+
+## Boolean operators
+
+**In Python** we use:
+
+```python
+and
+or
+not
+```
+
+_Note the `&&`, `||` and `!` boolean operators are [**not** available in Python](https://docs.python.org/3/reference/expressions.html#boolean-operations)._
+
+**In Ruby** we use:
+
+```ruby
+&&
+||
+!
+```
+
+_Note that though the `and`, `or` and `not` operators are available in Ruby, they are better suited as control flow operators. If we choose to use them as boolean operators (which is against general advice), we must be aware of the fact that they have a lower precedence than their counterparts (`&&`, `||` and `!`)._
+
+**In Javascript** we use:
+
+```javascript
+&&
+||
+!
+```
+
+_Note the `and`, `or` and `not` operators are **not** available in JavaScript._
+
+## Relational Operators
+
+These work in the same way in all three languages.
+
+```python
+>
+<
+>=
+<=
+```
+
+## Chaining relational operators
+
+**In Python**
+
+```python
+1 < 2 < 3 #=> True
+```
+
+**In Ruby**
+
+```ruby
+1 < 2 && 2 < 3 #=> True
+```
+
+**In JavaScript**
+
+```javascript
+1 < 2 < 3; // True
+```
+
+## Ternary operators
+
+**In Python**
+
+```python
+"✅" if True else "❌"
+```
+
+**In Ruby and JavaScript**
+
+```ruby
+true ? "✅" : "❌"
+```
+
+## I/O to Files
+
+**In Python**
+
+```python
+file = open("/path/to/my/file.txt")
+file.read() # Returns a single string with all the contents
+file.readlines() # Returns an list, where each item is a line
+file.write("Hi there!")
+file.close()
+```
+
+Alternatively, to avoid having to close the file we can do:
+
+```python
+with open("file.txt") as file:
+  contents = file.read()
+  file.write("Hi again!")
+```
+
+**In Ruby**
+
+```ruby
+file = File.open("/path/to/my/file.txt")
+file.read
+file.readlines
+file.write("Hi there!")
+file.close
+```
