@@ -2,22 +2,23 @@
 
 ## Integers
 
-**In Python**, we use true division.
+**In Python**
 
 ```python
-1 / 2 #=> 0.5
+1 / 2 #=> 0.5 True Division
 ```
 
-**In Ruby**, we use integer division.
+**In Ruby**
 
 ```ruby
-1 / 2 #=> 0
+1 / 2 #=> 0 Integer Division
+1.0 / 2.0 #=> 0.5 Float Division
 ```
 
-**In JavaScript**, we use true division.
+**In JavaScript**
 
 ```javascript
-1 / 2; //=> 0.5
+1 / 2; //=> 0.5 True Division
 ```
 
 ## Strings
@@ -97,7 +98,7 @@ s = "Sun"
 s[0] = "F" # => TypeError: 'str' object does not support item assignment
 ```
 
-**In Ruby**, Strings are mutable.
+**In Ruby**, Strings are _mutable_.
 
 ```ruby
 s = "Sun"
@@ -175,10 +176,10 @@ my_list = ['a', 'b', 'c']
 my_list = ['a', 'b', 'c']
 ```
 
-**In JavaScript ES6**
+**In JavaScript**
 
 ```javascript
-let myList = ["a", "b", "c"];
+const myList = ["a", "b", "c"];
 ```
 
 ### Adding an item
@@ -297,9 +298,10 @@ my_dict = {
   'watermelon': 0.5
 }
 my_dict['apple']
+my_dict.get('banana', 2.5) # Augments the method above, providing a default value
 my_dict.keys()
 my_dict.values()
-my_dict.items()
+my_dict.items() # Converts the dictionary into a list
 ```
 
 **In Ruby**
@@ -311,8 +313,10 @@ my_hash = {
   watermelon: 0.5
 }
 my_hash[:apple]
+my_hash.fetch(:banana, 2.5) # Augments the method above, providing a default value
 my_hash.keys
 my_hash.values
+my_hash.to_a # Converts the hash into an array
 ```
 
 **In JavaScript**
@@ -326,6 +330,7 @@ myObj = {
 myObj.apple;
 Object.keys(myObj);
 Object.values(myObj);
+Object.entries(myObj);
 ```
 
 ## Tuples
@@ -375,7 +380,7 @@ Sets are unordered collections of unique values.
 my_set = set()
 my_set.add(1) # {1}
 my_set.add(2) # {1,2}
-my_set.add(2) # {1,2} Didn't add anything! And no error.
+my_set.add(2) # {1,2}
 ```
 
 **In Ruby**
