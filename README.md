@@ -602,3 +602,43 @@ file.readlines
 file.write("Hi there!")
 file.close
 ```
+
+## Statements
+
+### If
+
+**In Python**
+
+```python
+if True:
+    print("✅")
+elif True:
+    print("❌")
+else:
+    print("❌")
+
+```
+
+**In Ruby**
+
+```ruby
+if true
+  puts('✅')
+elsif true
+  puts('❌')
+else
+  puts('❌')
+end
+```
+
+**In JavaScript**
+
+```javascript
+if (true) {
+  console.log("✅");
+} else if (true) {
+  console.log("❌");
+} else {
+  console.log("❌");
+}
+```
