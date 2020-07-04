@@ -196,7 +196,7 @@ my_list.append('d')
 my_list.push('d')
 ```
 
-**In JavaScript ES6**
+**In JavaScript**
 
 ```js
 myList.push("d");
@@ -218,7 +218,7 @@ my_list.pop()
 my_list.pop(2) #=> ["b", "c"] Removes and returns as many items as indicated, in this case 2 items
 ```
 
-**In JavaScript ES6**
+**In JavaScript**
 
 ```js
 myList.pop();
