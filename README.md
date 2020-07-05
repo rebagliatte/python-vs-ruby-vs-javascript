@@ -559,20 +559,6 @@ These work in the same way in all three languages.
 1 < 2 < 3; // True
 ```
 
-## Ternary operators
-
-**In Python**
-
-```python
-"✅" if True else "❌"
-```
-
-**In Ruby and JavaScript**
-
-```ruby
-true ? "✅" : "❌"
-```
-
 ## I/O to Files
 
 **In Python**
@@ -643,6 +629,20 @@ if (true) {
 }
 ```
 
+### Ternary if
+
+**In Python**
+
+```python
+"✅" if True else "❌"
+```
+
+**In Ruby and JavaScript**
+
+```ruby
+true ? "✅" : "❌"
+```
+
 ### Switch
 
 **In Python**
@@ -687,7 +687,9 @@ switch (location) {
 }
 ```
 
-### For (iterating over lists/arrays)
+### For
+
+#### Iterating over lists/arrays
 
 **In Python**
 
@@ -712,7 +714,7 @@ for (let i = 0; i < 11; i++) {
 }
 ```
 
-### For (iterating over dictionaries/hashes/objects)
+#### Iterating over dictionaries/hashes/objects
 
 **In Python**
 
