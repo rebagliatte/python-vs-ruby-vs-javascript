@@ -289,6 +289,44 @@ my_list.reverse! # Reverses the list in place
 myList.reverse(); // Reverses the list in place, and returns it
 ```
 
+### Zipping lists/arrays togeter
+
+**In Python**
+
+```python
+a = [1, 2, 3]
+b = ["a", "b", "c"]
+
+for item in zip(a, b):
+    print(item)
+
+# (1, 'a')
+# (2, 'b')
+# (3, 'c')
+```
+
+**In Ruby**
+
+```ruby
+a = [1, 2, 3]
+b = %w[a b c]
+
+a.zip(b).each do |item|
+  puts item
+end
+
+# 1
+# a
+# 2
+# b
+# 3
+# c
+```
+
+**In JavaScript**
+
+There's no built-in method to do this.
+
 ## Ranges
 
 **In Python**
