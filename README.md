@@ -87,7 +87,9 @@ s[::-1] # From the start to the end in steps of 1, counting backwards => "kjihgf
 s.reverse #=> "kjihgfedcba"
 ```
 
-**In JavaScript**, there's no built-in function for this.
+**In JavaScript**
+
+There's no built-in method to do this.
 
 ### Immutability
 
@@ -286,6 +288,31 @@ my_list.reverse! # Reverses the list in place
 ```js
 myList.reverse(); // Reverses the list in place, and returns it
 ```
+
+## Ranges
+
+**In Python**
+
+```python
+range(10) # From 0 to 10 (exclusive) => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+range(0, 10) # From 0 to 10 (exclusive)
+range(0, 10, 2) # From 0 to 10, in steps of 2 => [0, 2, 4, 6, 8]
+```
+
+To convert ranges to lists, we do `list(range(0,10))`.
+
+**In Ruby**
+
+```ruby
+0..10 # From 0 to 10 (inclusive) => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+0...10 # From 0 to 10 (exclusive) => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
+
+To convert ranges to arrays, we do `(0..10).to_a`.
+
+**In JavaScript**
+
+There's no built-in method to create ranges.
 
 ## Dictionaries (Python) / Hashes (Ruby) / objects (JavaScript)
 
