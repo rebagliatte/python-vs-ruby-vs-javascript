@@ -23,7 +23,47 @@
 
 ## Strings
 
-### Slice
+### Mutating strings
+
+**In Python**, Strings are _immutable_.
+
+```python
+s = "Sun"
+s[0] = "F" # => TypeError: 'str' object does not support item assignment
+```
+
+**In Ruby**, Strings are _mutable_.
+
+```ruby
+s = "Sun"
+s[0] = "F"
+s #=> Fun
+```
+
+### Interpolating strings
+
+**In Python**
+
+```python
+q = "quick"
+f"The {q} brown box"
+```
+
+**In Ruby**
+
+```ruby
+q = "quick"
+"The #{q} brown box"
+```
+
+**In JavaScript**
+
+```js
+q = "quick";
+`The #{q} brown box`;
+```
+
+### Slicing strings
 
 **In Python**, we use the `[]` function, passing in three params:
 
@@ -73,7 +113,7 @@ s = "abcdefghijk"
 s.slice(0,3) # From index 0 to 3 (exclusive) => "abc"
 ```
 
-### Reverse
+### Reversing strings
 
 **In Python**
 
@@ -91,23 +131,6 @@ s.reverse #=> "kjihgfedcba"
 
 There's no built-in method to do this.
 
-### Immutability
-
-**In Python**, Strings are _immutable_.
-
-```python
-s = "Sun"
-s[0] = "F" # => TypeError: 'str' object does not support item assignment
-```
-
-**In Ruby**, Strings are _mutable_.
-
-```ruby
-s = "Sun"
-s[0] = "F"
-s #=> Fun
-```
-
 **In JavaScript**, Strings are _immutable_.
 
 ```javascript
@@ -116,7 +139,7 @@ s2[0] = "F"; // The action is not performed but no error is triggered
 console.log(s2[0]); // Sun
 ```
 
-### Capitalization
+### Capitalizing strings
 
 **In Python**
 
@@ -137,29 +160,6 @@ s.downcase
 ```javascript
 s.toUpperCase();
 s.toLowerCase();
-```
-
-### String Interpolation
-
-**In Python**
-
-```python
-q = "quick"
-f"The {q} brown box"
-```
-
-**In Ruby**
-
-```ruby
-q = "quick"
-"The #{q} brown box"
-```
-
-**In JavaScript**
-
-```js
-q = "quick";
-`The #{q} brown box`;
 ```
 
 ## Lists (Python) / Arrays (Ruby and JavaScript)
@@ -227,7 +227,7 @@ myList.pop();
 myList.pop(1); //=> "b" Removes and returns the element at index 1
 ```
 
-### Counting the items
+### Counting items
 
 **In Python**
 
@@ -245,6 +245,29 @@ my_list.length
 
 ```js
 myList.length();
+```
+
+### Getting the minimum and maximum items
+
+**In Python**
+
+```python
+min([1, 2, 3])
+max([1, 2, 3])
+```
+
+**In Ruby**
+
+```ruby
+[1, 2, 3].min
+[1, 2, 3].max
+```
+
+**In JavaScript**
+
+```js
+Math.min(...[1, 2, 3]);
+Math.max(...[1, 2, 3]);
 ```
 
 ### Checking for the inclusion of an item
@@ -267,7 +290,7 @@ myList.length();
 [1, 2, 3].includes(1);
 ```
 
-### Sorting the items
+### Sorting items
 
 **In Python**
 
@@ -288,7 +311,7 @@ my_list.sort! # Sorts the list in place
 myList.sort(); // Sorts the list in place, and returns it
 ```
 
-### Reversing the items
+### Reversing items
 
 **In Python**
 
@@ -309,7 +332,7 @@ my_list.reverse! # Reverses the list in place
 myList.reverse(); // Reverses the list in place, and returns it
 ```
 
-### Zipping lists/arrays togeter
+### Zipping lists/arrays together
 
 **In Python**
 
@@ -371,6 +394,87 @@ To convert ranges to arrays, we do `(0..10).to_a`.
 **In JavaScript**
 
 There's no built-in method to create ranges.
+
+## List Comprehensions
+
+**In Python**, this is done with list comprehensions
+
+```python
+new_list = [some_method(i) for i in old_list if condition_method(i)]
+```
+
+**In Ruby and JavaScript**, there's no concept of list comprehensions.
+
+## Sets
+
+**In Python**
+
+Sets are unordered collections of unique values.
+
+```python
+my_set = set()
+my_set.add(1) # {1}
+my_set.add(2) # {1,2}
+my_set.add(2) # {1,2}
+```
+
+**In Ruby**
+
+In order to use them, the Set module needs to be required.
+
+```ruby
+require 'set'
+my_set = Set[]
+my_set.add(1)
+my_set.add(2)
+my_set.add(2)
+```
+
+**In JavaScript**
+
+```javascript
+mySet = new Set();
+mySet.add(1);
+mySet.add(2);
+mySet.add(2);
+```
+
+## Tuples
+
+**In Python**
+
+Tuples, unlike lists, are _immutable_, to ensure elements don't get flipped or reassigned.
+
+```python
+my_tuple = ('a', 'a', 'b')
+my_tuple.index('a')
+my_tuple.count('a')
+```
+
+**In Ruby and JavaScript**, there's no concept of tuples.
+
+## Named tuples
+
+**In Python**
+
+```python
+color = (red=255, green=0, blue=0)
+```
+
+**In Ruby**, there's no concept of named tuples, however, `Struct` or `OpenStruct` could be used as alternatives.
+
+```ruby
+require 'ostruct'
+
+Color = Struct.new(:red, :green, :blue)
+color = Color.new(255, 0, 0)
+```
+
+**In JavaScript**, there's no concept of named tuples, object literals are used instead.
+
+```javascript
+const color = { red: 255, green: 0, blue: 0 };
+```
 
 ## Dictionaries (Python) / Hashes (Ruby) / objects (JavaScript)
 
@@ -436,110 +540,6 @@ Object.entries(myObj);
 
 ```js
 "a" in { a: 1 };
-```
-
-### Getting the minimum and maximum values
-
-**In Python**
-
-```python
-min([1, 2, 3])
-max([1, 2, 3])
-```
-
-**In Ruby**
-
-```ruby
-[1, 2, 3].min
-[1, 2, 3].max
-```
-
-**In JavaScript**
-
-```js
-Math.min(...[1, 2, 3]);
-Math.max(...[1, 2, 3]);
-```
-
-## List Comprehensions
-
-**In Python**, this is done with list comprehensions
-
-```python
-new_list = [some_method(i) for i in old_list if condition_method(i)]
-```
-
-**In Ruby and JavaScript**, there's no concept of list comprehensions.
-
-## Tuples
-
-**In Python**
-
-Tuples, unlike lists, are _immutable_, to ensure elements don't get flipped or reassigned.
-
-```python
-my_tuple = ('a', 'a', 'b')
-my_tuple.index('a')
-my_tuple.count('a')
-```
-
-**In Ruby and JavaScript**, there's no concept of tuples.
-
-## Named tuples
-
-**In Python**
-
-```python
-color = (red=255, green=0, blue=0)
-```
-
-**In Ruby**, there's no concept of named tuples, however, `Struct` or `OpenStruct` could be used as alternatives.
-
-```ruby
-require 'ostruct'
-
-Color = Struct.new(:red, :green, :blue)
-color = Color.new(255, 0, 0)
-```
-
-**In JavaScript**, there's no concept of named tuples, object literals are used instead.
-
-```javascript
-const color = { red: 255, green: 0, blue: 0 };
-```
-
-## Sets
-
-**In Python**
-
-Sets are unordered collections of unique values.
-
-```python
-my_set = set()
-my_set.add(1) # {1}
-my_set.add(2) # {1,2}
-my_set.add(2) # {1,2}
-```
-
-**In Ruby**
-
-In order to use them, the Set module needs to be required.
-
-```ruby
-require 'set'
-my_set = Set[]
-my_set.add(1)
-my_set.add(2)
-my_set.add(2)
-```
-
-**In JavaScript**
-
-```javascript
-mySet = new Set();
-mySet.add(1);
-mySet.add(2);
-mySet.add(2);
 ```
 
 ## Booleans
@@ -847,9 +847,9 @@ end
 **In JavaScript**
 
 ```JavaScript
-["a", "b", "c"].forEach(function (char) {
+for (char of ["a", "b", "c"]) {
   console.log(char);
-});
+}
 ```
 
 #### Iterating _with an index_ over lists/arrays
@@ -872,9 +872,9 @@ end
 **In JavaScript**
 
 ```JavaScript
-["a", "b", "c"].forEach(function (char, index) {
+for ([index, char] of ["a", "b", "c"].entries()) {
   console.log(`index: ${index}, char: ${char}`);
-});
+}
 ```
 
 #### Iterating over dictionaries/hashes/objects
