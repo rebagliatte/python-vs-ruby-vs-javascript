@@ -686,3 +686,59 @@ switch (location) {
     console.log("Sneakers");
 }
 ```
+
+### For (iterating over lists/arrays)
+
+**In Python**
+
+```python
+for i in range(0, 11):
+    print(i)
+```
+
+**In Ruby**
+
+```ruby
+(0...11).each do |i|
+  puts i
+end
+```
+
+**In JavaScript**
+
+```JavaScript
+for (let i = 0; i < 11; i++) {
+  console.log(i);
+}
+```
+
+### For (iterating over dictionaries/hashes/objects)
+
+**In Python**
+
+```python
+my_dict = {"a": 1, "b": 2, "c": 3}
+
+for k, v in my_dict.items():
+    print(f"k:{k}, v:{v}")
+```
+
+**In Ruby**
+
+```ruby
+my_hash = { a: 1, b: 2, c: 3 }
+
+my_hash.each do |k, v|
+  puts "k: #{k}, v: #{v}"
+end
+```
+
+**In JavaScript**
+
+```JavaScript
+const myObject = { a: 1, b: 2, c: 3 };
+
+for (const k in myObject) {
+  console.log(`k:${k}, v:${myObject[k]}`);
+}
+```
