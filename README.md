@@ -721,24 +721,49 @@ switch (location) {
 **In Python**
 
 ```python
-for i in range(0, 11):
-    print(i)
+for char in ["a", "b", "c"]:
+    print(char)
 ```
 
 **In Ruby**
 
 ```ruby
-(0...11).each do |i|
-  puts i
+%w[a b c].each do |char|
+  puts char
 end
 ```
 
 **In JavaScript**
 
 ```JavaScript
-for (let i = 0; i < 11; i++) {
-  console.log(i);
-}
+["a", "b", "c"].forEach(function (char) {
+  console.log(char);
+});
+```
+
+#### Iterating _with an index_ over lists/arrays
+
+**In Python**
+
+```python
+for index, char in enumerate(["a", "b", "c"]):
+    print(f"index: {index}, char: {char}")
+```
+
+**In Ruby**
+
+```ruby
+%w[a b c].each_with_index do |char, index|
+  puts "index: #{index}, char: #{char}"
+end
+```
+
+**In JavaScript**
+
+```JavaScript
+["a", "b", "c"].forEach(function (char, index) {
+  console.log(`index: ${index}, char: ${char}`);
+});
 ```
 
 #### Iterating over dictionaries/hashes/objects
