@@ -780,3 +780,29 @@ while (n < 11) {
   n++;
 }
 ```
+
+### Break
+
+Breaks out of the closest enclosing loop. The same `break` keyword is used in all three languages.
+
+### Continue/Next
+
+Skips the rest of the current iteration and goes to the top of the closeset enclosing loop.
+
+**In Python**
+
+```python
+continue
+```
+
+**In Ruby**
+
+```ruby
+next
+```
+
+**In JavaScript**
+
+```JavaScript
+continue;
+```
