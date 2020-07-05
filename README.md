@@ -642,3 +642,47 @@ if (true) {
   console.log("❌");
 }
 ```
+
+### Switch
+
+**In Python**
+
+Switch statements are not available.
+
+**In Ruby**
+
+```ruby
+location = 'Beach'
+
+case location
+when 'Beach'
+  puts 'Flip flops'
+when 'Home'
+  puts 'Chewbacca slippers'
+when 'Mountain', 'Jungle'
+  puts 'Boots'
+else
+  puts 'Sneakers'
+end
+```
+
+**In JavaScript**
+
+```javascript
+const location = "Beach";
+
+switch (location) {
+  case "Beach":
+    console.log("Flip flops");
+    break;
+  case "Home":
+    console.log("Chewbacca slippers");
+    break;
+  case "Mountain":
+  case "Jungle":
+    console.log("Boots");
+    break;
+  default:
+    console.log("Sneakers");
+}
+```
