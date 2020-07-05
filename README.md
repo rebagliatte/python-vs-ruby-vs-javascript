@@ -247,6 +247,26 @@ my_list.length
 myList.length();
 ```
 
+### Checking for the inclusion of an item
+
+**In Python**
+
+```python
+1 in [1, 2, 3]
+```
+
+**In Ruby**
+
+```ruby
+[1, 2, 3].include?(1)
+```
+
+**In JavaScript**
+
+```js
+[1, 2, 3].includes(1);
+```
+
 ### Sorting the items
 
 **In Python**
@@ -396,6 +416,26 @@ myObj.apple;
 Object.keys(myObj);
 Object.values(myObj);
 Object.entries(myObj);
+```
+
+### Checking for the inclusion of a key
+
+**In Python**
+
+```python
+"a" in {"a": 1}
+```
+
+**In Ruby**
+
+```ruby
+{ a: 1 }.key?(:a)
+```
+
+**In JavaScript**
+
+```js
+"a" in { a: 1 };
 ```
 
 ## Tuples
