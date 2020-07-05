@@ -1,25 +1,54 @@
-# Python vs Ruby vs JavaScript
+# Table of Contents
 
-## Integers
+- [Data Types](#data-types)
+  - [Strings](#strings)
+    - [Mutating strings](#mutating-strings)
+    - [Interpolating strings](#interpolating-strings)
+    - [Slicing strings](#slicing-strings)
+    - [Reversing strings](#reversing-strings)
+    - [Capitalizing strings](#capitalizing-strings)
+  - [Integers](#integers)
+  - [Booleans](#booleans)
+  - [None (Python), nil (Ruby), null (JavaScript)](#none-python-nil-ruby-null-javascript)
+- [Truthyness](#truthyness)
+- [Operators](#operators)
+  - [Equality](#equality)
+  - [Boolean](#boolean)
+  - [Relational](#relational)
+- [Data Structures](#data-structures)
+  - [Lists (Python) / Arrays (Ruby and JavaScript)](#lists-python--arrays-ruby-and-javascript)
+    - [Creating a list](#creating-a-list)
+    - [Adding an item](#adding-an-item)
+    - [Removing items](#removing-items)
+    - [Counting items](#counting-items)
+    - [Getting the minimum and maximum items](#getting-the-minimum-and-maximum-items)
+    - [Checking for the inclusion of an item](#checking-for-the-inclusion-of-an-item)
+    - [Sorting items](#sorting-items)
+    - [Reversing items](#reversing-items)
+    - [Zipping lists/arrays together](#zipping-listsarrays-together)
+    - [Comprehending Lists](#comprehending-lists)
+  - [Ranges](#ranges)
+  - [Sets](#sets)
+  - [Tuples](#tuples)
+    - [Named tuples](#named-tuples)
+  - [Dictionaries (Python) / Hashes (Ruby) / objects (JavaScript)](#dictionaries-python--hashes-ruby--objects-javascript)
+    - [Checking for the inclusion of a key](#checking-for-the-inclusion-of-a-key)
+  - [Statements](#statements)
+    - [If](#if)
+    - [Ternary if](#ternary-if)
+    - [Switch](#switch)
+    - [For](#for)
+      - [Iterating over lists/arrays](#iterating-over-listsarrays)
+      - [Iterating _with an index_ over lists/arrays](#iterating-with-an-index-over-listsarrays)
+      - [Iterating over dictionaries/hashes/objects](#iterating-over-dictionarieshashesobjects)
+    - [While](#while)
+    - [Break](#break)
+    - [Continue/Next](#continuenext)
+- [Utilities](#utilities)
+  - [I/O to Files](#io-to-files)
 
-**In Python**
 
-```python
-1 / 2 #=> 0.5 True Division
-```
-
-**In Ruby**
-
-```ruby
-1 / 2 #=> 0 Integer Division
-1.0 / 2.0 #=> 0.5 Float Division
-```
-
-**In JavaScript**
-
-```javascript
-1 / 2; //=> 0.5 True Division
-```
+# Data Types
 
 ## Strings
 
@@ -161,6 +190,166 @@ s.downcase
 s.toUpperCase();
 s.toLowerCase();
 ```
+
+## Integers
+
+**In Python**
+
+```python
+1 / 2 #=> 0.5 True Division
+```
+
+**In Ruby**
+
+```ruby
+1 / 2 #=> 0 Integer Division
+1.0 / 2.0 #=> 0.5 Float Division
+```
+
+**In JavaScript**
+
+```javascript
+1 / 2; //=> 0.5 True Division
+```
+
+## Booleans
+
+**In Python**
+
+```python
+True
+False
+```
+
+**In Ruby**
+
+```ruby
+true
+false
+```
+
+**In JavaScript**
+
+```javascript
+true;
+false;
+```
+
+## None (Python), nil (Ruby), null (JavaScript)
+
+**In Python**
+
+```python
+None
+```
+
+**In Ruby**
+
+```ruby
+nil
+```
+
+**In JavaScript**
+
+```javascript
+null;
+```
+
+# Truthyness
+
+For quick reference:
+
+|                     | Python | Ruby | JavaScript |
+| ------------------- | ------ | ---- | ---------- |
+| `None`/`nil`/`null` | ❌      | ❌    | ❌          |
+| `""`                | ❌      | ✅    | ❌          |
+| `[]`                | ❌      | ✅    | ✅          |
+
+**In Python**
+
+```python
+not(not(None)) #=> False
+not(not("")) #=> False
+not(not([])) #=> False
+```
+
+**In Ruby**
+
+```ruby
+!!nil #=> False
+!!"" #=> True
+!![] #=> True
+```
+
+**In JavaScript**
+
+```javascript
+!!null; //=> False
+!!""; //=> False
+!![]; //=> True
+```
+
+# Operators
+
+## Equality
+
+**In Python and Ruby** we use _strict_ equality.
+
+```python
+==
+```
+
+**In JavaScript** we have two distinct operators for _abstract_ and _strict_ equality. [See MDN for more details](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness#A_model_for_understanding_equality_comparisons).
+
+```javascript
+== // Abstract equality comparison (compares values after converting them to the same type)
+=== // Strict equality comparison
+```
+
+## Boolean
+
+**In Python** we use:
+
+```python
+and
+or
+not
+```
+
+_Note the `&&`, `||` and `!` boolean operators are [**not** available in Python](https://docs.python.org/3/reference/expressions.html#boolean-operations)._
+
+**In Ruby** we use:
+
+```ruby
+&&
+||
+!
+```
+
+_Note that though the `and`, `or` and `not` operators are available in Ruby, they are better suited as control flow operators. If we choose to use them as boolean operators (which is against general advice), we must be aware of the fact that they have a lower precedence than their counterparts (`&&`, `||` and `!`)._
+
+**In Javascript** we use:
+
+```javascript
+&&
+||
+!
+```
+
+_Note the `and`, `or` and `not` operators are **not** available in JavaScript._
+
+## Relational
+
+These work in the same way in all three languages.
+
+```python
+>
+<
+>=
+<=
+```
+
+# Data Structures
 
 ## Lists (Python) / Arrays (Ruby and JavaScript)
 
@@ -370,6 +559,16 @@ end
 
 There's no built-in method to do this.
 
+### Comprehending Lists
+
+**In Python**
+
+```python
+new_list = [some_method(i) for i in old_list if condition_method(i)]
+```
+
+**In Ruby and JavaScript**, there's no built-in method to do this.
+
 ## Ranges
 
 **In Python**
@@ -394,16 +593,6 @@ To convert ranges to arrays, we do `(0..10).to_a`.
 **In JavaScript**
 
 There's no built-in method to create ranges.
-
-## List Comprehensions
-
-**In Python**, this is done with list comprehensions
-
-```python
-new_list = [some_method(i) for i in old_list if condition_method(i)]
-```
-
-**In Ruby and JavaScript**, there's no concept of list comprehensions.
 
 ## Sets
 
@@ -453,7 +642,7 @@ my_tuple.count('a')
 
 **In Ruby and JavaScript**, there's no concept of tuples.
 
-## Named tuples
+### Named tuples
 
 **In Python**
 
@@ -542,190 +731,6 @@ Object.entries(myObj);
 "a" in { a: 1 };
 ```
 
-## Booleans
-
-**In Python**
-
-```python
-True
-False
-```
-
-**In Ruby**
-
-```ruby
-true
-false
-```
-
-**In JavaScript**
-
-```javascript
-true;
-false;
-```
-
-## None (Python), nil (Ruby), null (JavaScript)
-
-**In Python**
-
-```python
-None
-```
-
-**In Ruby**
-
-```ruby
-nil
-```
-
-**In JavaScript**
-
-```javascript
-null;
-```
-
-## Truthyness
-
-For quick reference:
-
-|                     | Python | Ruby | JavaScript |
-| ------------------- | ------ | ---- | ---------- |
-| `None`/`nil`/`null` | ❌     | ❌   | ❌         |
-| `""`                | ❌     | ✅   | ❌         |
-| `[]`                | ❌     | ✅   | ✅         |
-
-**In Python**
-
-```python
-not(not(None)) #=> False
-not(not("")) #=> False
-not(not([])) #=> False
-```
-
-**In Ruby**
-
-```ruby
-!!nil #=> False
-!!"" #=> True
-!![] #=> True
-```
-
-**In JavaScript**
-
-```javascript
-!!null; //=> False
-!!""; //=> False
-!![]; //=> True
-```
-
-## Equality Operators
-
-**In Python and Ruby** we use _strict_ equality.
-
-```python
-==
-```
-
-**In JavaScript** we have two distinct operators for _abstract_ and _strict_ equality. [See MDN for more details](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness#A_model_for_understanding_equality_comparisons).
-
-```javascript
-== // Abstract equality comparison (compares values after converting them to the same type)
-=== // Strict equality comparison
-```
-
-## Boolean operators
-
-**In Python** we use:
-
-```python
-and
-or
-not
-```
-
-_Note the `&&`, `||` and `!` boolean operators are [**not** available in Python](https://docs.python.org/3/reference/expressions.html#boolean-operations)._
-
-**In Ruby** we use:
-
-```ruby
-&&
-||
-!
-```
-
-_Note that though the `and`, `or` and `not` operators are available in Ruby, they are better suited as control flow operators. If we choose to use them as boolean operators (which is against general advice), we must be aware of the fact that they have a lower precedence than their counterparts (`&&`, `||` and `!`)._
-
-**In Javascript** we use:
-
-```javascript
-&&
-||
-!
-```
-
-_Note the `and`, `or` and `not` operators are **not** available in JavaScript._
-
-## Relational Operators
-
-These work in the same way in all three languages.
-
-```python
->
-<
->=
-<=
-```
-
-## Chaining relational operators
-
-**In Python**
-
-```python
-1 < 2 < 3 #=> True
-```
-
-**In Ruby**
-
-```ruby
-1 < 2 && 2 < 3 #=> True
-```
-
-**In JavaScript**
-
-```javascript
-1 < 2 < 3; // True
-```
-
-## I/O to Files
-
-**In Python**
-
-```python
-file = open("/path/to/my/file.txt")
-file.read() # Returns a single string with all the contents
-file.readlines() # Returns an list, where each item is a line
-file.write("Hi there!")
-file.close()
-```
-
-Alternatively, to avoid having to close the file we can do:
-
-```python
-with open("file.txt") as file:
-  contents = file.read()
-  file.write("Hi again!")
-```
-
-**In Ruby**
-
-```ruby
-file = File.open("/path/to/my/file.txt")
-file.read
-file.readlines
-file.write("Hi there!")
-file.close
-```
 
 ## Statements
 
@@ -968,4 +973,36 @@ next
 
 ```JavaScript
 continue;
+```
+
+# Utilities
+
+## I/O to Files
+
+**In Python**
+
+```python
+file = open("/path/to/my/file.txt")
+file.read() # Returns a single string with all the contents
+file.readlines() # Returns an list, where each item is a line
+file.write("Hi there!")
+file.close()
+```
+
+Alternatively, to avoid having to close the file we can do:
+
+```python
+with open("file.txt") as file:
+  contents = file.read()
+  file.write("Hi again!")
+```
+
+**In Ruby**
+
+```ruby
+file = File.open("/path/to/my/file.txt")
+file.read
+file.readlines
+file.write("Hi there!")
+file.close
 ```
