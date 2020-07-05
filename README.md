@@ -742,3 +742,39 @@ for (const k in myObject) {
   console.log(`k:${k}, v:${myObject[k]}`);
 }
 ```
+
+### While
+
+**In Python**
+
+```python
+x = 0
+
+while x < 11:
+    print(x)
+    x += 1
+else:
+    print("Stop")
+```
+
+**In Ruby**
+
+```ruby
+x = 0
+
+while x < 11
+  puts x
+  x += 1
+end
+```
+
+**In JavaScript**
+
+```JavaScript
+let n = 0;
+
+while (n < 11) {
+  console.log(n);
+  n++;
+}
+```
