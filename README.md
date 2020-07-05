@@ -461,6 +461,16 @@ Math.min(...[1, 2, 3]);
 Math.max(...[1, 2, 3]);
 ```
 
+## List Comprehensions
+
+**In Python**, this is done with list comprehensions
+
+```python
+new_list = [some_method(i) for i in old_list if condition_method(i)]
+```
+
+**In Ruby and JavaScript**, there's no concept of list comprehensions.
+
 ## Tuples
 
 **In Python**
