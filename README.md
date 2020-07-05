@@ -438,6 +438,29 @@ Object.entries(myObj);
 "a" in { a: 1 };
 ```
 
+### Getting the minimum and maximum values
+
+**In Python**
+
+```python
+min([1, 2, 3])
+max([1, 2, 3])
+```
+
+**In Ruby**
+
+```ruby
+[1, 2, 3].min
+[1, 2, 3].max
+```
+
+**In JavaScript**
+
+```js
+Math.min(...[1, 2, 3]);
+Math.max(...[1, 2, 3]);
+```
+
 ## Tuples
 
 **In Python**
