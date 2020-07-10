@@ -69,6 +69,14 @@ s[0] = "F"
 s #=> Fun
 ```
 
+**In JavaScript**, Strings are _immutable_.
+
+```javascript
+let s2 = "Sun";
+s2[0] = "F"; // The action is not performed but no error is triggered
+console.log(s2[0]); // Sun
+```
+
 ### Interpolating strings
 
 **In Python**
@@ -159,14 +167,6 @@ s.reverse #=> "kjihgfedcba"
 **In JavaScript**
 
 There's no built-in method to do this.
-
-**In JavaScript**, Strings are _immutable_.
-
-```javascript
-let s2 = "Sun";
-s2[0] = "F"; // The action is not performed but no error is triggered
-console.log(s2[0]); // Sun
-```
 
 ### Capitalizing strings
 
