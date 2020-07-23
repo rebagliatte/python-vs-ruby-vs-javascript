@@ -97,7 +97,7 @@ q = "quick"
 
 ```js
 q = "quick";
-`The #{q} brown box`;
+`The ${q} brown box`;
 ```
 
 ### Slicing strings
