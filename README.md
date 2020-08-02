@@ -44,9 +44,9 @@
     - [While](#while)
     - [Break](#break)
     - [Continue/Next](#continuenext)
-- [Utilities](#utilities)
-  - [I/O to Files](#io-to-files)
-
+- [Arguments](#arguments)
+  - [Passing positional arguments](#passing-positional-arguments)
+  - [Passing named/keyword arguments](#passing-namedkeyword-arguments)
 
 # Data Types
 
@@ -974,34 +974,68 @@ next
 continue;
 ```
 
-# Utilities
+# Arguments
 
-## I/O to Files
+## Passing positional arguments
 
 **In Python**
 
 ```python
-file = open("/path/to/my/file.txt")
-file.read() # Returns a single string with all the contents
-file.readlines() # Returns an list, where each item is a line
-file.write("Hi there!")
-file.close()
-```
+def my_function(a, b, c=3):
+    return f"a:{a}, b:{b}, c:{c}"
 
-Alternatively, to avoid having to close the file we can do:
 
-```python
-with open("file.txt") as file:
-  contents = file.read()
-  file.write("Hi again!")
+print(my_function(1, 2))  # => a:1, b:2, c:3
 ```
 
 **In Ruby**
 
 ```ruby
-file = File.open("/path/to/my/file.txt")
-file.read
-file.readlines
-file.write("Hi there!")
-file.close
+def my_function(a, b, c = 3)
+  "a:#{a}, b:#{b}, c:#{c}"
+end
+
+puts(my_function(1, 2)) # => a:1, b:2, c:3
+```
+
+**In JavaScript**
+
+```JavaScript
+function myFunction(a, b, c = 3) {
+  return `a:${a}, b:${b}, c:${c}`;
+}
+
+console.log(myFunction(1, 2)); //=> a:1, b:2, c:3
+```
+
+## Passing named/keyword arguments
+
+**In Python**
+
+```python
+def my_function(a, b, c=3):
+    return f"a:{a}, b:{b}, c:{c}"
+
+
+print(my_function(b=2, a=1))  # => a:1, b:2, c:3
+```
+
+**In Ruby**
+
+```ruby
+def my_function(a:, b:, c: 3)
+  "a:#{a}, b:#{b}, c:#{c}"
+end
+
+puts(my_function(b: 2, a: 1)) # => a:1, b:2, c:3
+```
+
+**In JavaScript**
+
+```JavaScript
+function myFunction({ a, b, c = 3 } = {}) {
+  return `a:${a}, b:${b}, c:${c}`;
+}
+
+console.log(myFunction({ b: 2, a: 1 })); //=> a:1, b:2, c:3
 ```
