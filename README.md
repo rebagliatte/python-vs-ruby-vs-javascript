@@ -529,7 +529,7 @@ myList.reverse(); // Reverses the list in place, and returns it
 a = [1, 2, 3]
 b = ["a", "b", "c"]
 
-for item in zip(a, b):
+for item in list(zip(a, b)):
     print(item)
 
 # (1, 'a')
@@ -731,7 +731,6 @@ Object.entries(myObj);
 "a" in { a: 1 };
 ```
 
-
 ## Statements
 
 ### If
@@ -837,23 +836,23 @@ switch (location) {
 **In Python**
 
 ```python
-for char in ["a", "b", "c"]:
-    print(char)
+for n in [1, 2, 3]:
+    print(n)
 ```
 
 **In Ruby**
 
 ```ruby
-%w[a b c].each do |char|
-  puts char
+%w[a b c].each do |n|
+  puts n
 end
 ```
 
 **In JavaScript**
 
 ```JavaScript
-for (char of ["a", "b", "c"]) {
-  console.log(char);
+for (n of [1, 2, 3]) {
+  console.log(n);
 }
 ```
 
@@ -862,23 +861,23 @@ for (char of ["a", "b", "c"]) {
 **In Python**
 
 ```python
-for index, char in enumerate(["a", "b", "c"]):
-    print(f"index: {index}, char: {char}")
+for index, n in enumerate([1, 2, 3]):
+    print(f"index: {index}, n: {n}")
 ```
 
 **In Ruby**
 
 ```ruby
-%w[a b c].each_with_index do |char, index|
-  puts "index: #{index}, char: #{char}"
+[1, 2, 3].each_with_index do |n, index|
+  puts "index: #{index}, n: #{n}"
 end
 ```
 
 **In JavaScript**
 
 ```JavaScript
-for ([index, char] of ["a", "b", "c"].entries()) {
-  console.log(`index: ${index}, char: ${char}`);
+for ([index, n] of [1, 2, 3].entries()) {
+  console.log(`index: ${index}, n: ${n}`);
 }
 ```
 
