@@ -51,6 +51,15 @@
   - [Passing positional arguments, with options](#passing-positional-arguments-with-options)
   - [Passing named/keyword arguments](#passing-namedkeyword-arguments)
   - [Passing named/keyword arguments, with options](#passing-namedkeyword-arguments-with-options)
+- [Classes](#classes)
+  - [Instantiating a class and using its methods](#instantiating-a-class-and-using-its-methods)
+  - [Inheriting from a class](#inheriting-from-a-class)
+  - [Checking if a class inherits from another](#checking-if-a-class-inherits-from-another)
+  - [Extending parent class methods with super](#extending-parent-class-methods-with-super)
+  - [Encapsulating methods within a class](#encapsulating-methods-within-a-class)
+  - [Extending classes with modules](#extending-classes-with-modules)
+  - [Using class-level constants](#using-class-level-constants)
+  - [Raising custom error types](#raising-custom-error-types)
 
 # Data Types
 
@@ -1225,4 +1234,198 @@ function myFunction({ a, b, c = 3, options = {} } = {}) {
 
 console.log(myFunction({ b: 2, a: 1, options: { d: 4, e: 5, f: 6 } }));
 //=> a:1, b:2, c:3, options:{"d":4,"e":5,"f":6}
+```
+
+# Classes
+
+## Instantiating a class and using its methods
+
+**In Ruby**
+
+```rb
+class Triangle
+  def initialize(*sides)
+    @sides = sides
+  end
+
+  def perimeter
+    @sides.sum
+  end
+end
+
+t = Triangle.new(2, 3, 5)   #=> #<Triangle:0x00007fb0cb888500>
+t.perimeter                 #=> 10
+```
+
+## Inheriting from a class
+
+**In Ruby**
+
+```rb
+class Polygon
+  def initialize(*sides)
+    @sides = sides
+  end
+
+  def perimeter
+    @sides.sum
+  end
+end
+
+class Triangle < Polygon
+  def area
+    # [Heron's formula](https://en.wikipedia.org/wiki/Heron%27s_formula)
+    s = perimeter / 2.0
+    Math.sqrt(s * (s - @sides[0]) * (s - @sides[1]) * (s - @sides[2]))
+  end
+end
+
+class Rectangle < Polygon
+  def area
+    @sides[0] * @sides[1]
+  end
+end
+
+t = Triangle.new(4, 3, 5) #=> #<Triangle:0x00007fd8c3033b00>
+t.perimeter #=> 12
+t.area #=> 6
+
+r = Rectangle.new(5, 2, 5, 2) #=> #<Rectangle:0x00007fd8c3033740>
+r.perimeter #=> 14
+r.area #=> 10
+```
+
+## Checking if a class inherits from another
+
+**In Ruby**
+
+```rb
+t.class.ancestors.include?(Triangle) #=> true
+```
+
+## Extending parent class methods with super
+
+**In Ruby**
+
+```rb
+class Polygon
+  def initialize; end
+
+  def greet
+    puts 'Hi from Polygon'
+  end
+end
+
+class Triangle < Polygon
+  def greet
+    super
+    puts 'Hi from Triangle'
+  end
+end
+
+Triangle.new.greet
+
+# Hi from Polygon
+# Hi from Triangle
+```
+
+## Encapsulating methods within a class
+
+**In Ruby**
+
+```rb
+class Triangle
+  def initialize(*sides)
+    @sides = sides
+  end
+
+  def greet
+    "Hi I am an #{triangle_type} triangle"
+  end
+
+  private
+
+  def triangle_type
+    case @sides.uniq.count
+    when 1 then 'equilateral'
+    when 2 then 'isosceles'
+    when 3 then 'scalene'
+    end
+  end
+end
+
+t = Triangle.new(3, 3, 3)
+t.greet # => Hi I am an equilateral triangle
+t.triangle_type #=> private method `triangle_type' called for #<Triangle:0x00007fa795033dd0 @sides=[3, 3, 3]> (NoMethodError)
+```
+
+## Extending classes with modules
+
+**In Ruby**
+
+```rb
+module Extrudable
+  def volume(height:)
+    area * height
+  end
+end
+
+class Triangle
+  include Extrudable
+
+  def area
+    # ...
+  end
+end
+
+class Circle
+  include Extrudable
+
+  def initialize(radius:)
+    @radius = radius
+  end
+
+  def area
+    Math::PI * (@radius ** 2)
+  end
+end
+
+c = Circle.new(radius: 4)  #=> #<Circle:0x00007fcf7e1478f0>
+c.area                     #=> 50.26548245743669
+c.volume(height: 10)       #=> 502.6548245743669
+```
+
+## Using class-level constants
+
+**In Ruby**
+
+```rb
+class Triangle
+  NUMBER_OF_SIDES = 3
+end
+```
+
+## Raising custom error types
+
+**In Ruby**
+
+```rb
+class Triangle
+  NUMBER_OF_SIDES = 3
+
+  def initialize(*sides)
+    raise InvalidNumberOfSides if sides.size != NUMBER_OF_SIDES
+
+    @sides = sides
+  end
+
+  class InvalidNumberOfSides < ArgumentError
+    def message
+      "wrong number of sides (expected #{Triangle::NUMBER_OF_SIDES})"
+    end
+  end
+end
+
+Triangle.new(1)
+# wrong number of sides (expected 3) (Triangle::InvalidNumberOfSides)
 ```
