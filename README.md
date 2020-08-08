@@ -435,7 +435,7 @@ my_list.length
 **In JavaScript**
 
 ```js
-myList.length();
+myList.length;
 ```
 
 ### Getting the minimum and maximum items
