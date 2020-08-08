@@ -26,8 +26,8 @@
     - [Sorting items](#sorting-items)
     - [Reversing items](#reversing-items)
     - [Zipping lists/arrays together](#zipping-listsarrays-together)
+    - [Creating lists out of ranges](#creating-lists-out-of-ranges)
     - [Comprehending Lists](#comprehending-lists)
-  - [Ranges](#ranges)
   - [Sets](#sets)
   - [Tuples](#tuples)
     - [Named tuples](#named-tuples)
@@ -561,17 +561,7 @@ end
 
 There's no built-in method to do this.
 
-### Comprehending Lists
-
-**In Python**
-
-```python
-new_list = [some_method(i) for i in old_list if condition_method(i)]
-```
-
-**In Ruby and JavaScript**, there's no built-in method to do this.
-
-## Ranges
+### Creating lists out of ranges
 
 **In Python**
 
@@ -595,6 +585,16 @@ To convert ranges to arrays, we do `(0..10).to_a`.
 **In JavaScript**
 
 There's no built-in method to create ranges.
+
+### Comprehending Lists
+
+**In Python**
+
+```python
+new_list = [some_method(i) for i in old_list if condition_method(i)]
+```
+
+**In Ruby and JavaScript**, there's no built-in method to do this.
 
 ## Sets
 
