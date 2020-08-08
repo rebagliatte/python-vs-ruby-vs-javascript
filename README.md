@@ -28,6 +28,8 @@
     - [Zipping lists/arrays together](#zipping-listsarrays-together)
     - [Creating lists out of ranges](#creating-lists-out-of-ranges)
     - [Comprehending Lists](#comprehending-lists)
+    - [Mapping lists](#mapping-lists)
+    - [Filtering lists](#filtering-lists)
   - [Sets](#sets)
   - [Tuples](#tuples)
     - [Named tuples](#named-tuples)
@@ -595,6 +597,106 @@ new_list = [some_method(i) for i in old_list if condition_method(i)]
 ```
 
 **In Ruby and JavaScript**, there's no built-in method to do this.
+
+### Mapping lists
+
+**In Python**
+
+```py
+def square(n):
+    return n ** 2
+
+
+map(square, [1, 2, 3]) #=> [1, 4, 9]
+```
+
+Or, with a lambda:
+
+```py
+map(lambda n: n ** 2, [1, 2, 3])
+```
+
+**In Ruby**
+
+```rb
+def square(n)
+  n ** 2
+end
+
+[1, 2, 3].map { |n| square(n) }
+```
+
+Or:
+
+```rb
+[1, 2, 3].map { |n| n ** 2 }
+```
+
+**In JavaScript**
+
+```js
+function square(n) {
+  return n ** 2;
+}
+
+[1, 2, 3].map(n => square(n));
+```
+
+Or:
+
+```js
+[1, 2, 3].map(n => n ** 2 );
+```
+
+### Filtering lists
+
+**In Python**
+
+```py
+def is_even(n):
+    return n % 2 == 0
+
+
+filter(is_even, [1, 2, 3])  # => [2]
+```
+
+Or, with a lambda:
+
+```py
+filter(lambda n: n % 2 == 0, [1, 2, 3])
+```
+
+**In Ruby**
+
+```rb
+def is_even?(n)
+  n.even?
+end
+
+[1, 2, 3].filter { |n| is_even?(n) }
+```
+
+In this specific case, we could use a more idiomatic approach with the `even?` built-in method.
+
+```rb
+[1, 2, 3].filter(&:even?)
+```
+
+**In JavaScript**
+
+```js
+function isEven(n) {
+  return n % 2 == 0;
+}
+
+[1, 2, 3].filter(n => isEven(n));
+```
+
+Or:
+
+```js
+[1, 2, 3].filter(n => n % 2 == 0);
+```
 
 ## Sets
 
