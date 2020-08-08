@@ -46,7 +46,9 @@
     - [Continue/Next](#continuenext)
 - [Arguments](#arguments)
   - [Passing positional arguments](#passing-positional-arguments)
+  - [Passing positional arguments, with options](#passing-positional-arguments-with-options)
   - [Passing named/keyword arguments](#passing-namedkeyword-arguments)
+  - [Passing named/keyword arguments, with options](#passing-namedkeyword-arguments-with-options)
 
 # Data Types
 
@@ -1008,6 +1010,52 @@ function myFunction(a, b, c = 3) {
 console.log(myFunction(1, 2)); //=> a:1, b:2, c:3
 ```
 
+## Passing positional arguments, with options
+
+**In Python**
+
+```python
+def my_function(a, b, c = 3, *args):
+    return f"a:{a}, b:{b}, c:{c}, args:{args}"
+
+
+print(my_function(1, 2, 33, 4, 5, 6)) #=> a:1, b:2, c:33, args:(4, 5, 6)
+```
+
+Note `*args` is treated as a _tuple_.
+
+**In Ruby**
+
+```ruby
+def my_function(a, b, c = 3, *args)
+  "a:#{a}, b:#{b}, c:#{c}, args:#{args}"
+end
+
+puts(my_function(1, 2, 33, 4, 5, 6)) # => a:1, b:2, c:33, args:[4, 5, 6]
+```
+
+Note `*args` is treated as an _array_.
+
+**In JavaScript**
+
+```JavaScript
+function myFunction(a, b, c = 3, ...args) {
+  return `a:${a}, b:${b}, c:${c}, args:${args}`;
+}
+
+console.log(myFunction(1, 2, 33, 4, 5, 6)); //=> a:1, b:2, c:33, args:4,5,6
+```
+
+Note `...args` is a destructured _array_. This is known as the [Rest Parameters Syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters), with `...` being referred to as the "Rest Operator".
+
+Alternatively, we could achieve a similar result by destructuring ("spreading") an array inside a function call. In this context `...` is referred to as the *Spread Operator*.
+
+Here's how that looks like:
+
+```JavaScript
+Math.max(...[1, 2, 3]) //=> 3
+```
+
 ## Passing named/keyword arguments
 
 **In Python**
@@ -1032,10 +1080,47 @@ puts(my_function(b: 2, a: 1)) # => a:1, b:2, c:3
 
 **In JavaScript**
 
+JavaScript doesn’t have named/keyword parameters. The official way of simulating them is via object literals.
+
 ```JavaScript
 function myFunction({ a, b, c = 3 } = {}) {
   return `a:${a}, b:${b}, c:${c}`;
 }
 
 console.log(myFunction({ b: 2, a: 1 })); //=> a:1, b:2, c:3
+```
+
+## Passing named/keyword arguments, with options
+
+**In Python**
+
+```python
+def my_function(a, b, c=3, **kwargs):
+    return f"a:{a}, b:{b}, c:{c}, kwargs:{kwargs}"
+
+
+print(my_function(b=2, a=1, d=4, e=5, f=6))
+# => a:1, b:2, c:3, kwargs:{'d': 4, 'e': 5, 'f': 6}
+```
+
+**In Ruby**
+
+```ruby
+def my_function(a:, b:, c: 3, **kwargs)
+  "a:#{a}, b:#{b}, c:#{c}, kwargs:#{kwargs}"
+end
+
+puts(my_function(b: 2, a: 1, d: 4, e: 5, f: 6))
+# => a:1, b:2, c:3, kwargs:{:d=>4, :e=>5, :f=>6}
+```
+
+**In JavaScript**
+
+```js
+function myFunction({ a, b, c = 3, options = {} } = {}) {
+  return `a:${a}, b:${b}, c:${c}, options:${JSON.stringify(options)}`;
+}
+
+console.log(myFunction({ b: 2, a: 1, options: { d: 4, e: 5, f: 6 } }));
+//=> a:1, b:2, c:3, options:{"d":4,"e":5,"f":6}
 ```
