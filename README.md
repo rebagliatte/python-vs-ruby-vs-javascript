@@ -1240,6 +1240,20 @@ console.log(myFunction({ b: 2, a: 1, options: { d: 4, e: 5, f: 6 } }));
 
 ## Instantiating a class and using its methods
 
+**In Python**
+
+```py
+class Triangle():
+    def __init__(self, *sides):
+        self.sides = sides
+
+    def perimeter(self):
+        return sum(self.sides)
+
+
+Triangle(2, 3, 5).perimeter()  # => 10
+```
+
 **In Ruby**
 
 ```rb
@@ -1259,6 +1273,32 @@ t.perimeter                 #=> 10
 
 ## Inheriting from a class
 
+**In Python**
+
+```py
+class Polygon():
+    def __init__(self, *sides):
+        self.sides = sides
+
+    def perimeter(self):
+        return sum(self.sides)
+
+
+class Triangle(Polygon):
+    def area(self):
+        pass
+
+
+class Rectangle(Polygon):
+    def area(self):
+        return self.sides[0] * self.sides[1]
+
+
+rectangle = Rectangle(5, 2, 5, 2)
+rectangle.perimeter()     # => 14
+rectangle.area()          # => 10
+```
+
 **In Ruby**
 
 ```rb
@@ -1274,9 +1314,7 @@ end
 
 class Triangle < Polygon
   def area
-    # [Heron's formula](https://en.wikipedia.org/wiki/Heron%27s_formula)
-    s = perimeter / 2.0
-    Math.sqrt(s * (s - @sides[0]) * (s - @sides[1]) * (s - @sides[2]))
+    # ...
   end
 end
 
@@ -1286,24 +1324,50 @@ class Rectangle < Polygon
   end
 end
 
-t = Triangle.new(4, 3, 5) #=> #<Triangle:0x00007fd8c3033b00>
-t.perimeter #=> 12
-t.area #=> 6
-
-r = Rectangle.new(5, 2, 5, 2) #=> #<Rectangle:0x00007fd8c3033740>
-r.perimeter #=> 14
-r.area #=> 10
+rectangle = Rectangle.new(5, 2, 5, 2) #=> #<Rectangle:0x00007fd8c3033740>
+rectangle.perimeter   #=> 14
+rectangle.area        #=> 10
 ```
 
 ## Checking if a class inherits from another
 
+**In Python**
+
+```py
+issubclass(rectangle.__class__, Polygon)
+```
+
 **In Ruby**
 
 ```rb
-t.class.ancestors.include?(Triangle) #=> true
+rectangle.class.ancestors.include?(Polygon) #=> true
 ```
 
 ## Extending parent class methods with super
+
+**In Python**
+
+```py
+class Polygon():
+    def __init__(self):
+        pass
+
+    def greet(self):
+        print('Hi from Polygon')
+
+
+class Triangle(Polygon):
+    def greet(self):
+        super().greet()
+        print('Hi from Triangle')
+
+
+Triangle().greet()
+
+# Hi from Polygon
+# Hi from Triangle
+# None
+```
 
 **In Ruby**
 
@@ -1331,6 +1395,36 @@ Triangle.new.greet
 
 ## Encapsulating methods within a class
 
+**In Python**
+
+```py
+class Triangle():
+    def __init__(self, *sides):
+        self.sides = sides
+
+    def greet(self):
+        return f"Hi, I am an {self.__triangle_type()} triangle!"
+
+    def __triangle_type(self):
+        unique_sides = len(set(self.sides))
+
+        if unique_sides == 1:
+            return "equilateral"
+        elif unique_sides == 2:
+            return "isosceles"
+        else:
+            return "scalene"
+
+
+t = Triangle(3, 3, 3)
+
+t.greet()
+# => Hi, I am an equilateral triangle!
+
+t.__triangle_type()
+# => AttributeError: 'Triangle' object has no attribute '__triangle_type'
+```
+
 **In Ruby**
 
 ```rb
@@ -1340,7 +1434,7 @@ class Triangle
   end
 
   def greet
-    "Hi I am an #{triangle_type} triangle"
+    "Hi, I am an #{triangle_type} triangle!"
   end
 
   private
@@ -1355,11 +1449,47 @@ class Triangle
 end
 
 t = Triangle.new(3, 3, 3)
-t.greet # => Hi I am an equilateral triangle
-t.triangle_type #=> private method `triangle_type' called for #<Triangle:0x00007fa795033dd0 @sides=[3, 3, 3]> (NoMethodError)
+
+t.greet 
+# => Hi I am an equilateral triangle
+
+t.triangle_type 
+# => private method `triangle_type' called for #<Triangle:0x00007fa795033dd0 @sides=[3, 3, 3]> (NoMethodError)
 ```
 
 ## Extending classes with modules
+
+**In Python**
+
+We'd need 2 separate files
+
+In `extrudable.py`:
+```py
+def volume(area, height):
+    return area * height
+```
+
+In `circle.py`:
+```py
+import extrudable
+import math
+
+
+class Circle():
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):
+        return math.pi * (self.radius ** 2)
+
+    def volume(self, height):
+        return extrudable.volume(self.area(), height)
+
+
+c = Circle(radius=4)  #=> <__main__.Circle object at 0x7ff05587c9d0>
+c.area()              #=> 50.26548245743669
+c.volume(height=10)   #=> 502.6548245743669
+```
 
 **In Ruby**
 
@@ -1397,6 +1527,13 @@ c.volume(height: 10)       #=> 502.6548245743669
 
 ## Using class-level constants
 
+**In Python**
+
+```py
+class Triangle():
+    NUMBER_OF_SIDES = 3
+```
+
 **In Ruby**
 
 ```rb
@@ -1406,6 +1543,23 @@ end
 ```
 
 ## Raising custom error types
+
+**In Python**
+
+```py
+class Triangle():
+    NUMBER_OF_SIDES = 3
+
+    def __init__(self, *sides):
+        if len(sides) != self.NUMBER_OF_SIDES:
+            raise ValueError(f"expected {self.NUMBER_OF_SIDES} sides")
+
+        self.sides = sides
+
+
+Triangle(1)
+# => ValueError: expected 3 sides
+```
 
 **In Ruby**
 
