@@ -59,7 +59,7 @@
   - [Encapsulating methods within a class](#encapsulating-methods-within-a-class)
   - [Extending classes with modules](#extending-classes-with-modules)
   - [Using class-level constants](#using-class-level-constants)
-  - [Raising custom error types](#raising-custom-error-types)
+  - [Raising errors](#raising-errors)
 
 # Data Types
 
@@ -1251,7 +1251,7 @@ class Triangle():
         return sum(self.sides)
 
 
-Triangle(2, 3, 5).perimeter()  # => 10
+Triangle(2, 3, 5).perimeter()   # => 10
 ```
 
 **In Ruby**
@@ -1267,8 +1267,23 @@ class Triangle
   end
 end
 
-t = Triangle.new(2, 3, 5)   #=> #<Triangle:0x00007fb0cb888500>
-t.perimeter                 #=> 10
+Triangle.new(2, 3, 5).perimeter   #=> 10
+```
+
+**In JavaScript**
+
+```js
+class Triangle {
+  constructor(...sides) {
+    this.sides = sides;
+  }
+  get perimeter() {
+    return this.sides.reduce((partialSum, n) => partialSum + n, 0);
+  }
+}
+
+new Triangle(2, 3, 5).perimeter;  //=> 10
+
 ```
 
 ## Inheriting from a class
@@ -1329,6 +1344,35 @@ rectangle.perimeter   #=> 14
 rectangle.area        #=> 10
 ```
 
+**In JavaScript**
+
+```js
+class Polygon {
+  constructor(...sides) {
+    this.sides = sides;
+  }
+  get perimeter() {
+    return this.sides.reduce((partial_sum, a) => partial_sum + a, 0);
+  }
+}
+
+class Triangle extends Polygon {
+  get area() {
+    // ...
+  }
+}
+
+class Rectangle extends Polygon {
+  get area() {
+    return this.sides[0] * this.sides[1];
+  }
+}
+
+const rectangle = new Rectangle(5, 2, 5, 2); //=> Rectangle { sides: [ 5, 2, 5, 2 ] }
+rectangle.perimeter; // 14
+rectangle.area; // 10
+```
+
 ## Checking if a class inherits from another
 
 **In Python**
@@ -1340,7 +1384,13 @@ issubclass(rectangle.__class__, Polygon)
 **In Ruby**
 
 ```rb
-rectangle.class.ancestors.include?(Polygon) #=> true
+rectangle.class.ancestors.include?(Polygon)
+```
+
+**In JavaScript**
+
+```js
+rectangle instanceof Polygon;
 ```
 
 ## Extending parent class methods with super
@@ -1393,6 +1443,29 @@ Triangle.new.greet
 # Hi from Triangle
 ```
 
+**In JavaScript**
+
+```js
+class Polygon {
+  constructor() {}
+  greet() {
+    console.log("Hi from Polygon");
+  }
+}
+
+class Triangle extends Polygon {
+  greet() {
+    super.greet();
+    console.log("Hi from Triangle");
+  }
+}
+
+new Triangle().greet();
+
+// Hi from Polygon
+// Hi from Triangle
+```
+
 ## Encapsulating methods within a class
 
 **In Python**
@@ -1403,23 +1476,23 @@ class Triangle():
         self.sides = sides
 
     def greet(self):
-        return f"Hi, I am an {self.__triangle_type()} triangle!"
+        return f"Hi! {self.__triangle_type()} triangle here."
 
     def __triangle_type(self):
-        unique_sides = len(set(self.sides))
+        unique_side_count = len(set(self.sides))
 
-        if unique_sides == 1:
-            return "equilateral"
-        elif unique_sides == 2:
-            return "isosceles"
+        if unique_side_count == 1:
+            return "Equilateral"
+        elif unique_side_count == 2:
+            return "Isosceles"
         else:
-            return "scalene"
+            return "Scalene"
 
 
 t = Triangle(3, 3, 3)
 
 t.greet()
-# => Hi, I am an equilateral triangle!
+# => Hi! Equilateral triangle here.
 
 t.__triangle_type()
 # => AttributeError: 'Triangle' object has no attribute '__triangle_type'
@@ -1434,16 +1507,16 @@ class Triangle
   end
 
   def greet
-    "Hi, I am an #{triangle_type} triangle!"
+    "Hi! #{triangle_type} triangle here."
   end
 
   private
 
   def triangle_type
     case @sides.uniq.count
-    when 1 then 'equilateral'
-    when 2 then 'isosceles'
-    when 3 then 'scalene'
+    when 1 then 'Equilateral'
+    when 2 then 'Isosceles'
+    when 3 then 'Scalene'
     end
   end
 end
@@ -1451,17 +1524,56 @@ end
 t = Triangle.new(3, 3, 3)
 
 t.greet 
-# => Hi I am an equilateral triangle
+# => Hi! Equilateral triangle here.
 
 t.triangle_type 
 # => private method `triangle_type' called for #<Triangle:0x00007fa795033dd0 @sides=[3, 3, 3]> (NoMethodError)
+```
+
+**In JavaScript**
+
+As of today, there's *no native support for private methods or properties* in JavaScript.
+
+The prevalent convention is to prefix them with an underscore (`_`) to indicate they should be treated as private, however, this is just an artifact to aid communication; it has no actual effect.
+
+```js
+class Triangle {
+  constructor(...sides) {
+    this.sides = sides;
+  }
+
+  greet() {
+    return `Hi! ${this._triangleType()} triangle here.`;
+  }
+
+  _triangleType() {
+    const uniqueSideCount = new Set(this.sides).size;
+
+    switch (uniqueSideCount) {
+      case 1:
+        return "Equilateral";
+      case 2:
+        return "Isosceles";
+      case 3:
+        return "Scalene";
+    }
+  }
+}
+
+const triangle = new Triangle(3, 3, 3);
+
+triangle.greet();
+// Hi! Equilateral triangle here.
+
+triangle._triangleType();
+// Equilateral
 ```
 
 ## Extending classes with modules
 
 **In Python**
 
-We'd need 2 separate files
+We'd need 2 separate files.
 
 In `extrudable.py`:
 ```py
@@ -1520,10 +1632,57 @@ class Circle
   end
 end
 
-c = Circle.new(radius: 4)  #=> #<Circle:0x00007fcf7e1478f0>
-c.area                     #=> 50.26548245743669
-c.volume(height: 10)       #=> 502.6548245743669
+c = Circle.new(radius: 4)
+c.area
+c.volume(height: 10)
 ```
+
+**In JavaScript**
+
+We'd need 2 separate files.
+
+In `extrudable.js`:
+```js
+function volume(area, height) {
+  return area * height;
+}
+
+module.exports = { volume };
+```
+
+In `circle.js`:
+```js
+const { volume } = require("./extrudable");
+
+class Circle {
+  constructor(radius) {
+    this.radius = radius;
+  }
+
+  area() {
+    return Math.PI * this.radius ** 2;
+  }
+
+  volume(height) {
+    return volume(this.area(), height);
+  }
+}
+
+const c = new Circle(4);
+c.area();
+c.volume(10);
+```
+
+Alternatively, ES6 modules (currently experimental) could be used:
+
+* In `extrudable.js`:
+  ```
+  export default { volume };
+  ```
+* In `circle.js`:
+  ```
+  import { volume } from "./extrudable";
+  ```
 
 ## Using class-level constants
 
@@ -1542,7 +1701,11 @@ class Triangle
 end
 ```
 
-## Raising custom error types
+**In JavaScript**
+
+There's no native support yet, however, there's an experimental feature which refers to class-level constants as a class' [public static fields](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields#Public_static_fields).
+
+## Raising errors
 
 **In Python**
 
@@ -1551,10 +1714,13 @@ class Triangle():
     NUMBER_OF_SIDES = 3
 
     def __init__(self, *sides):
-        if len(sides) != self.NUMBER_OF_SIDES:
-            raise ValueError(f"expected {self.NUMBER_OF_SIDES} sides")
+        self.__validate_number_of_sides(sides)
 
         self.sides = sides
+
+    def __validate_number_of_sides(self, sides):
+        if len(sides) != self.NUMBER_OF_SIDES:
+            raise ValueError(f"expected {self.NUMBER_OF_SIDES} sides")
 
 
 Triangle(1)
@@ -1568,18 +1734,41 @@ class Triangle
   NUMBER_OF_SIDES = 3
 
   def initialize(*sides)
-    raise InvalidNumberOfSides if sides.size != NUMBER_OF_SIDES
+    validate_number_of_sides(sides)
 
     @sides = sides
   end
 
-  class InvalidNumberOfSides < ArgumentError
-    def message
-      "wrong number of sides (expected #{Triangle::NUMBER_OF_SIDES})"
-    end
+  private
+
+  def validate_number_of_sides(sides)
+    raise ArgumentError, "invalid number of sides (expected #{NUMBER_OF_SIDES})" if sides.size != NUMBER_OF_SIDES
   end
 end
 
 Triangle.new(1)
-# wrong number of sides (expected 3) (Triangle::InvalidNumberOfSides)
+# invalid number of sides (expected 3) (ArgumentError)
+```
+
+**In JavaScript**
+
+```js
+class Triangle {
+  constructor(...sides) {
+    this._validateNumberofSides(sides);
+
+    this.sides = sides;
+  }
+
+  _validateNumberofSides(sides) {
+    const maxNumberOfSides = 3;
+
+    if (sides.length != maxNumberOfSides) {
+      throw new Error(`invalid number of sides (expected ${maxNumberOfSides})`);
+    }
+  }
+}
+
+new Triangle(1);
+// => Error: invalid number of sides (expected 3)
 ```
