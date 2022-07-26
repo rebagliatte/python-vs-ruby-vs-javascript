@@ -60,6 +60,7 @@
   - [Extending classes with modules](#extending-classes-with-modules)
   - [Using class-level constants](#using-class-level-constants)
   - [Raising errors](#raising-errors)
+  - [Recovering from errors](#recovering-errors)
 
 # Data Types
 
@@ -1771,4 +1772,40 @@ class Triangle {
 
 new Triangle(1);
 // => Error: invalid number of sides (expected 3)
+```
+
+## Recovering errors
+
+**In Python**
+
+```py
+
+try:
+    t = Triangle(1)
+except ValueError as e:
+    print(e)
+```
+
+**In Ruby**
+
+
+```rb
+begin
+  t = Triangle.new(1)
+rescue ArgumentError => e
+  puts "Exception Message:#{e.message}"
+end
+
+```
+
+**In JavaScript**
+```js
+try {
+    new Triangle(1);
+}
+catch (err) {
+  // statements to handle any exceptions
+  console.log(err);
+}
+
 ```
